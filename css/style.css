@@ -845,15 +845,27 @@ body.nav-open .back-to-top { display: none; }
   .nav.open { right: 0; }
   .nav__list { flex-direction: column; gap: 6px; }
   .nav__link { color: var(--navy-800); padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
+  .has-dropdown .nav__link i { transition: transform 0.3s ease; }
+  .has-dropdown.open .nav__link i { transform: rotate(180deg); }
   .dropdown {
     position: static; width: auto; opacity: 1; visibility: visible; transform: none;
-    box-shadow: none; display: none; padding: 4px 0 4px 14px;
+    box-shadow: none; padding: 0 0 0 4px;
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
+    display: grid;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
   }
-  .has-dropdown.open .dropdown { display: grid; }
+  .has-dropdown.open .dropdown { max-height: 900px; padding: 8px 0 10px 4px; }
   .dropdown__col { border-left: none; padding: 0; }
-  .dropdown__title { border-bottom: none; padding-bottom: 4px; margin-bottom: 4px; }
+  .dropdown__title { border-bottom: none; padding-bottom: 4px; margin-bottom: 6px; }
+  .dropdown__col ul {
+    padding-left: 12px;
+    margin-left: 4px;
+    border-left: 2px solid var(--gray-100);
+  }
+  .dropdown__col ul a { margin: 0; }
   .nav__toggle { display: flex; }
   .header__actions .btn--whatsapp span { display: none; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
