@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isOpen = nav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.classList.toggle('active', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
   });
  
   // Dropdown de productos en móvil (toca para abrir/cerrar)
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nav.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.classList.remove('active');
+        document.body.classList.remove('nav-open');
       }
     });
   });

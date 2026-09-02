@@ -243,10 +243,13 @@ h1, h2, h3, h4 {
 .nav__toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  width: 30px;
+  padding: 14px 8px;
+  margin: -14px -8px;
 }
 .nav__toggle span {
+  width: 30px;
   height: 2px;
   background: var(--white);
   border-radius: 2px;
@@ -810,6 +813,11 @@ h1, h2, h3, h4 {
 /* ===== HEADER SCROLLED STATE ===== */
 .header.scrolled { box-shadow: var(--shadow-md); }
 
+/* ===== MENÚ MÓVIL ABIERTO: bloquea el scroll y oculta widgets flotantes ===== */
+body.nav-open { overflow: hidden; }
+body.nav-open .chat-widget,
+body.nav-open .back-to-top { display: none; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .about__grid { grid-template-columns: 1fr; }
@@ -830,6 +838,8 @@ h1, h2, h3, h4 {
     background: var(--white);
     box-shadow: var(--shadow-lg);
     padding: 100px 30px 30px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transition: right 0.35s ease;
   }
   .nav.open { right: 0; }
