@@ -49,15 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('navToggle');
  
+  const dropdownParent = document.querySelector('.has-dropdown');
+
+  function closeNav() {
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.classList.remove('active');
+    document.body.classList.remove('nav-open');
+    if (dropdownParent) dropdownParent.classList.remove('open');
+  }
+
   navToggle.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.classList.toggle('active', isOpen);
     document.body.classList.toggle('nav-open', isOpen);
+    if (!isOpen && dropdownParent) dropdownParent.classList.remove('open');
   });
- 
+
   // Dropdown de productos en móvil (toca para abrir/cerrar)
-  const dropdownParent = document.querySelector('.has-dropdown');
   let dropdownLink = null;
   if (dropdownParent) {
     dropdownLink = dropdownParent.querySelector('.nav__link');
@@ -68,18 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
- 
+
   // Cierra el menú móvil al hacer click en un enlace
   document.querySelectorAll('.nav__link, .dropdown a').forEach(link => {
     if (link === dropdownLink) return; // el enlace "Productos" solo abre/cierra su submenú
     link.addEventListener('click', () => {
-      if (window.innerWidth <= 860) {
-        nav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.classList.remove('active');
-        document.body.classList.remove('nav-open');
-      }
+      if (window.innerWidth <= 860) closeNav();
     });
+  });
+
+  // Cierra el menú móvil al tocar fuera de él
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 860 && nav.classList.contains('open') &&
+        !nav.contains(e.target) && !navToggle.contains(e.target)) {
+      closeNav();
+    }
   });
  
   /* ---------- Animación al hacer scroll (Intersection Observer) ---------- */

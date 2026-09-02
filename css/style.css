@@ -847,7 +847,8 @@ body.nav-open .back-to-top { display: none; }
   .nav__link { color: var(--navy-800); padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
   .has-dropdown .nav__link i { transition: transform 0.3s ease; }
   .has-dropdown.open .nav__link i { transform: rotate(180deg); }
-  .dropdown {
+  .dropdown,
+  .has-dropdown:hover .dropdown {
     position: static; width: auto; opacity: 1; visibility: visible; transform: none;
     box-shadow: none; padding: 0 0 0 4px;
     grid-template-columns: 1fr;
@@ -857,7 +858,8 @@ body.nav-open .back-to-top { display: none; }
     overflow: hidden;
     transition: max-height 0.4s ease, padding 0.4s ease;
   }
-  .has-dropdown.open .dropdown { max-height: 900px; padding: 8px 0 10px 4px; }
+  .has-dropdown.open .dropdown,
+  .has-dropdown.open:hover .dropdown { max-height: 900px; padding: 8px 0 10px 4px; }
   .dropdown__col { border-left: none; padding: 0; }
   .dropdown__title { border-bottom: none; padding-bottom: 4px; margin-bottom: 6px; }
   .dropdown__col ul {
