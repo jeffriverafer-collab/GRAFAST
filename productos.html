@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Productos | Grafast</title>
+<meta name="description" content="Catálogo completo de Grafast S.A.C.: impermeabilizantes, emulsiones asfálticas, asfaltos sólidos y líquidos, y mezclas asfálticas. Cotiza cada producto por WhatsApp.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== BARRA SUPERIOR ===== -->
+<div class="top-bar">
+  <div class="container top-bar__inner">
+    <div class="top-bar__contact">
+      <a href="tel:+51990358013"><i class="fa-solid fa-phone"></i> +51 990 358 013</a>
+      <a href="mailto:contacto@grafast.pe"><i class="fa-solid fa-envelope"></i> contacto@grafast.pe</a>
+    </div>
+    <div class="top-bar__social">
+      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER / NAV ===== -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html#inicio" class="logo">
+      <img src="img/grafast-logo-mark.png" alt="Grafast">
+    </a>
+
+    <nav class="nav" id="nav">
+      <ul class="nav__list">
+        <li><a href="index.html#inicio" class="nav__link">Inicio</a></li>
+        <li><a href="index.html#nosotros" class="nav__link">Nosotros</a></li>
+        <li class="has-dropdown">
+          <a href="productos.html" class="nav__link active">Productos <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown">
+            <div class="dropdown__col">
+              <a href="#impermeabilizantes" class="dropdown__title"><i class="fa-solid fa-droplet"></i> Impermeabilizantes</a>
+              <ul>
+                <li><a href="#impermeabilizantes">Mantos Asfálticos</a></li>
+                <li><a href="#impermeabilizantes">Membrana Asfáltica</a></li>
+                <li><a href="#impermeabilizantes">Teja Asfáltica</a></li>
+              </ul>
+            </div>
+            <div class="dropdown__col">
+              <a href="#emulsiones" class="dropdown__title"><i class="fa-solid fa-flask"></i> Emulsiones Asfálticas</a>
+              <ul>
+                <li><a href="#emulsiones">Emulsión de Rotura Lenta</a></li>
+                <li><a href="#emulsiones">Emulsión de Rotura Intermedia</a></li>
+                <li><a href="#emulsiones">Emulsión de Rotura Rápida</a></li>
+              </ul>
+            </div>
+            <div class="dropdown__col">
+              <a href="#asfaltos-solidos" class="dropdown__title"><i class="fa-solid fa-cube"></i> Asfaltos Sólidos</a>
+              <ul>
+                <li><a href="#asfaltos-solidos">PEN 60/70</a></li>
+                <li><a href="#asfaltos-solidos">PEN 85/100</a></li>
+                <li><a href="#asfaltos-solidos">PEN 120/150</a></li>
+              </ul>
+            </div>
+            <div class="dropdown__col">
+              <a href="#asfalto-liquido" class="dropdown__title"><i class="fa-solid fa-droplet-slash"></i> Asfalto Líquido</a>
+              <ul>
+                <li><a href="#asfalto-liquido">Asfalto RC-250</a></li>
+                <li><a href="#asfalto-liquido">Asfalto MC-30</a></li>
+              </ul>
+            </div>
+            <div class="dropdown__col">
+              <a href="#mezcla-asfaltica" class="dropdown__title"><i class="fa-solid fa-road"></i> Mezcla Asfáltica</a>
+              <ul>
+                <li><a href="#mezcla-asfaltica">Asfalto en Frío</a></li>
+                <li><a href="#mezcla-asfaltica">Asfalto en Caliente</a></li>
+              </ul>
+              <a href="productos.html" class="dropdown__all">Ver catálogo completo →</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="index.html#proyectos" class="nav__link">Proyectos</a></li>
+        <li><a href="index.html#contacto" class="nav__link">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="https://wa.me/51990358013" target="_blank" rel="noopener" class="btn btn--whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> Cotizar
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ENCABEZADO CATÁLOGO ===== -->
+<section class="catalog-hero">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Catálogo Completo</span>
+      <h1>Nuestros Productos</h1>
+      <p>Elige un producto para solicitar tu cotización directamente por WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPERMEABILIZANTES ===== -->
+<section class="catalog-category" id="impermeabilizantes">
+  <div class="container">
+    <div class="catalog-category__header" data-reveal>
+      <i class="fa-solid fa-droplet"></i>
+      <h2>Impermeabilizantes</h2>
+    </div>
+    <div class="catalog-grid" data-reveal>
+      <a class="product-card" style="background-image:url(img/manto.jpg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Mantos%20Asf%C3%A1lticos" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Mantos Asfálticos</span>
+          <span class="product-card__desc">Lámina asfáltica prefabricada de alta resistencia, ideal para impermeabilizar techos, terrazas y superficies expuestas a lluvia intensa y rayos UV.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/membrana.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Membrana%20Asf%C3%A1ltica" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Membrana Asfáltica</span>
+          <span class="product-card__desc">Membrana autoadhesiva de fácil instalación que forma una barrera continua contra la humedad en cubiertas y cimentaciones.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/teja.jpg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Teja%20Asf%C3%A1ltica" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Teja Asfáltica</span>
+          <span class="product-card__desc">Teja asfáltica decorativa y resistente, perfecta para techos residenciales que buscan estética y protección duradera.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EMULSIONES ASFÁLTICAS ===== -->
+<section class="catalog-category catalog-category--alt" id="emulsiones">
+  <div class="container">
+    <div class="catalog-category__header" data-reveal>
+      <i class="fa-solid fa-flask"></i>
+      <h2>Emulsiones Asfálticas</h2>
+    </div>
+    <div class="catalog-grid" data-reveal>
+      <a class="product-card" style="background-image:url(img/emulsionr.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Emulsi%C3%B3n%20de%20Rotura%20Lenta" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Emulsión de Rotura Lenta</span>
+          <span class="product-card__desc">Emulsión asfáltica de curado lento, ideal para riegos de imprimación y mezclas en frío que requieren mayor tiempo de trabajabilidad.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/emulsioni.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Emulsi%C3%B3n%20de%20Rotura%20Intermedia" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Emulsión de Rotura Intermedia</span>
+          <span class="product-card__desc">Emulsión de rotura intermedia diseñada para mezclas asfálticas en frío, con buena adherencia y estabilidad.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/emulsionl.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Emulsi%C3%B3n%20de%20Rotura%20R%C3%A1pida" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Emulsión de Rotura Rápida</span>
+          <span class="product-card__desc">Emulsión de rotura rápida para riegos de liga y sellado de fisuras, con adherencia inmediata sobre la superficie.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ASFALTOS SÓLIDOS ===== -->
+<section class="catalog-category" id="asfaltos-solidos">
+  <div class="container">
+    <div class="catalog-category__header" data-reveal>
+      <i class="fa-solid fa-cube"></i>
+      <h2>Asfaltos Sólidos</h2>
+    </div>
+    <div class="catalog-grid" data-reveal>
+      <a class="product-card" style="background-image:url(img/rc250.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20PEN%2060%2F70" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">PEN 60/70</span>
+          <span class="product-card__desc">Asfalto sólido de penetración 60/70, el grado más utilizado en pavimentación de vías con tránsito pesado.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/trabajo5.jpeg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20PEN%2085%2F100" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">PEN 85/100</span>
+          <span class="product-card__desc">Asfalto sólido de penetración 85/100, con mayor flexibilidad, ideal para climas fríos y zonas de baja temperatura.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/trabajo6.jpeg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20PEN%20120%2F150" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">PEN 120/150</span>
+          <span class="product-card__desc">Asfalto sólido de penetración 120/150, de alta flexibilidad, recomendado para mezclas en frío y zonas de tránsito ligero.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ASFALTO LÍQUIDO ===== -->
+<section class="catalog-category catalog-category--alt" id="asfalto-liquido">
+  <div class="container">
+    <div class="catalog-category__header" data-reveal>
+      <i class="fa-solid fa-droplet-slash"></i>
+      <h2>Asfalto Líquido</h2>
+    </div>
+    <div class="catalog-grid" data-reveal>
+      <a class="product-card" style="background-image:url(img/rc250.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Asfalto%20RC-250" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Asfalto RC-250</span>
+          <span class="product-card__desc">Asfalto líquido de curado rápido RC-250, usado en riegos de liga y tratamientos superficiales de carreteras.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/mc30.png)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Asfalto%20MC-30" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Asfalto MC-30</span>
+          <span class="product-card__desc">Asfalto líquido de curado medio MC-30, empleado en riegos de imprimación sobre bases granulares.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEZCLA ASFÁLTICA ===== -->
+<section class="catalog-category" id="mezcla-asfaltica">
+  <div class="container">
+    <div class="catalog-category__header" data-reveal>
+      <i class="fa-solid fa-road"></i>
+      <h2>Mezcla Asfáltica</h2>
+    </div>
+    <div class="catalog-grid" data-reveal>
+      <a class="product-card" style="background-image:url(img/somos.jpeg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Asfalto%20en%20Fr%C3%ADo" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Asfalto en Frío</span>
+          <span class="product-card__desc">Mezcla asfáltica aplicable en frío, lista para usar en el bacheo y reparación rápida de pavimentos.</span>
+        </span>
+      </a>
+      <a class="product-card" style="background-image:url(img/trabajomanto.jpeg)" href="https://wa.me/51990358013?text=Hola%2C%20quiero%20cotizar%3A%20Asfalto%20en%20Caliente" target="_blank" rel="noopener">
+        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+        <span class="product-card__info">
+          <span class="product-card__title">Asfalto en Caliente</span>
+          <span class="product-card__desc">Mezcla asfáltica en caliente de alta compactación, utilizada en la construcción y mantenimiento de vías pavimentadas.</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__col footer__logo">
+      <img src="img/grafast-logo.png" alt="Grafast">
+      <p>Soluciones en impermeabilización y techado de alto rendimiento para proyectos residenciales, industriales y logísticos en todo el Perú.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="index.html#nosotros">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="index.html#proyectos">Proyectos</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Categorías</h4>
+      <ul>
+        <li><a href="#impermeabilizantes">Impermeabilizantes</a></li>
+        <li><a href="#emulsiones">Emulsiones Asfálticas</a></li>
+        <li><a href="#asfaltos-solidos">Asfaltos Sólidos</a></li>
+        <li><a href="#asfalto-liquido">Asfalto Líquido</a></li>
+        <li><a href="#mezcla-asfaltica">Mezcla Asfáltica</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Boletín</h4>
+      <p>Recibe novedades y consejos técnicos sobre impermeabilización.</p>
+      <form class="footer__newsletter" id="newsletterForm">
+        <input type="email" placeholder="Tu correo electrónico" required>
+        <button type="submit" aria-label="Suscribirse"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p>&copy; <span id="year"></span> Grafast S.A.C. Todos los derechos reservados.</p>
+      <p>Sitio de demostración inspirado en roofingperu.com</p>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
