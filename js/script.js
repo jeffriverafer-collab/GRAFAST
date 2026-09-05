@@ -336,44 +336,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
  
-  /* ---------- Chat widget flotante ---------- */
-  const chatToggle = document.getElementById('chatToggle');
-  const chatPanel = document.getElementById('chatPanel');
-  const chatClose = document.getElementById('chatClose');
-  const chatBody = document.querySelector('.chat-widget__body');
- 
-  const chatReplies = {
-    mantos: 'Nuestros mantos asfálticos son ideales para techos planos e industriales, con hasta 15 años de vida útil. ¿Deseas una cotización?',
-    tejas: 'Las tejas asfálticas Grafast combinan estética y resistencia para techos inclinados residenciales. ¿Quieres ver el catálogo?',
-    imper: 'Contamos con impermeabilizantes para todo tipo de superficie, con garantía escrita. ¿Te contactamos por WhatsApp?'
-  };
- 
-  if (chatToggle && chatPanel) {
-    chatToggle.addEventListener('click', () => {
-      chatPanel.classList.toggle('open');
-    });
-    chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
- 
-    document.querySelectorAll('.chat-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const key = btn.getAttribute('data-msg');
-        const existingReply = chatBody.querySelector('.chat-reply');
-        if (existingReply) existingReply.remove();
- 
-        const reply = document.createElement('p');
-        reply.className = 'chat-reply';
-        reply.textContent = chatReplies[key] || 'Gracias por tu consulta, un asesor te contactará pronto.';
-        chatBody.appendChild(reply);
-      });
-    });
-  }
- 
-  /* ---------- Cierra dropdown/menú al hacer click fuera ---------- */
-  document.addEventListener('click', (e) => {
-    if (chatPanel && chatPanel.classList.contains('open') &&
-        !chatPanel.contains(e.target) && !chatToggle.contains(e.target)) {
-      chatPanel.classList.remove('open');
-    }
-  });
-
 });

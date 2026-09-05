@@ -41,6 +41,7 @@
       <ul class="nav__list">
         <li><a href="#inicio" class="nav__link active">Inicio</a></li>
         <li><a href="#nosotros" class="nav__link">Nosotros</a></li>
+        <li><a href="servicios.html" class="nav__link">Servicios</a></li>
         <li class="has-dropdown">
           <a href="#productos" class="nav__link">Productos <i class="fa-solid fa-chevron-down"></i></a>
           <div class="dropdown">
@@ -163,43 +164,31 @@
   </div>
 </section>
 
-<!-- ===== PRODUCTOS ===== -->
+<!-- ===== SERVICIOS Y PRODUCTOS ===== -->
 <section class="products" id="productos">
   <div class="container">
     <div class="section-head" data-reveal>
-      <span class="eyebrow">Nuestra Línea</span>
-      <h2>Productos Grafast</h2>
-      <p>Soluciones completas para cada tipo de superficie y proyecto.</p>
+      <span class="eyebrow">Lo Que Ofrecemos</span>
+      <h2>Servicios y Productos</h2>
+      <p>Ejecutamos el servicio completo de asfaltado e impermeabilización, y contamos con los materiales y productos para tu proyecto.</p>
     </div>
 
-    <div class="catalog-grid">
-      <a class="product-card" style="background-image:url(img/trabajomanto.jpeg)" href="https://wa.me/51927625524?text=Hola%2C%20quiero%20cotizar%3A%20Mantos%20Asf%C3%A1lticos" target="_blank" rel="noopener" data-reveal>
-        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+    <div class="catalog-grid catalog-grid--split">
+      <a class="product-card" style="background-image:url(img/trabajomanto.jpeg)" href="servicios.html" data-reveal>
+        <span class="product-card__cta"><i class="fa-solid fa-arrow-right"></i> Ver más</span>
         <span class="product-card__info">
-          <span class="product-card__title">Mantos Asfálticos</span>
-          <span class="product-card__desc">Ideales para superficies planas e industriales, ofrecen máxima hermeticidad y resistencia a la intemperie.</span>
+          <span class="product-card__title">Nuestros Servicios</span>
+          <span class="product-card__desc">Asfaltado, pavimentación e impermeabilización ejecutados por profesionales, con soluciones a la medida de cada proyecto.</span>
         </span>
       </a>
 
-      <a class="product-card" style="background-image:url(img/teja.jpeg)" href="https://wa.me/51927625524?text=Hola%2C%20quiero%20cotizar%3A%20Tejas%20Asf%C3%A1lticas" target="_blank" rel="noopener" data-reveal>
-        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
+      <a class="product-card" style="background-image:url(img/manto.jpg)" href="productos.html" data-reveal>
+        <span class="product-card__cta"><i class="fa-solid fa-arrow-right"></i> Ver más</span>
         <span class="product-card__info">
-          <span class="product-card__title">Tejas Asfálticas</span>
-          <span class="product-card__desc">Diseñadas para techos inclinados residenciales, combinan estética, durabilidad y fácil instalación.</span>
+          <span class="product-card__title">Nuestros Productos</span>
+          <span class="product-card__desc">Impermeabilizantes, emulsiones asfálticas y mezclas de alta calidad, listos para tu obra.</span>
         </span>
       </a>
-
-      <a class="product-card" style="background-image:url(img/geomembrana.jpg)" href="https://wa.me/51927625524?text=Hola%2C%20quiero%20cotizar%3A%20Geomembrana" target="_blank" rel="noopener" data-reveal>
-        <span class="product-card__cta"><i class="fa-brands fa-whatsapp"></i> Cotizar</span>
-        <span class="product-card__info">
-          <span class="product-card__title">Geomembrana</span>
-          <span class="product-card__desc">Sellado y protección adicional contra filtraciones, compatibles con todo tipo de sustrato.</span>
-        </span>
-      </a>
-    </div>
-
-    <div class="products__more" data-reveal>
-      <a href="productos.html" class="btn btn--primary">Ver Catálogo Completo <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -433,6 +422,7 @@
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
         <li><a href="#productos">Productos</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -467,24 +457,33 @@
 
 <button id="backToTop" class="back-to-top" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
 
-<!-- Widget de chat flotante -->
-<div class="chat-widget" id="chatWidget">
-  <button class="chat-widget__toggle" id="chatToggle" aria-label="Abrir chat">
-    <i class="fa-solid fa-comment-dots"></i>
-  </button>
-  <div class="chat-widget__panel" id="chatPanel">
-    <div class="chat-widget__header">
-      <span>Asesoría Técnica Grafast</span>
-      <button id="chatClose" aria-label="Cerrar chat"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="chat-widget__body">
-      <p>¡Hola! ¿Sobre qué producto necesitas asesoría?</p>
-      <button class="chat-option" data-msg="mantos">Mantos Asfálticos</button>
-      <button class="chat-option" data-msg="tejas">Tejas Asfálticas</button>
-      <button class="chat-option" data-msg="imper">Impermeabilizantes</button>
-    </div>
-  </div>
-</div>
+<!-- Redes sociales flotantes -->
+<ul class="social-float">
+  <li class="social-float__item">
+    <a href="https://wa.me/51927625524" target="_blank" rel="noopener" aria-label="WhatsApp" data-social="whatsapp" class="social-float__link">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <div class="social-float__tooltip">WhatsApp</div>
+  </li>
+  <li class="social-float__item">
+    <a href="#" target="_blank" rel="noopener" aria-label="Instagram" data-social="instagram" class="social-float__link">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <div class="social-float__tooltip">Instagram</div>
+  </li>
+  <li class="social-float__item">
+    <a href="#" target="_blank" rel="noopener" aria-label="TikTok" data-social="tiktok" class="social-float__link">
+      <i class="fa-brands fa-tiktok"></i>
+    </a>
+    <div class="social-float__tooltip">TikTok</div>
+  </li>
+  <li class="social-float__item">
+    <a href="#" target="_blank" rel="noopener" aria-label="Facebook" data-social="facebook" class="social-float__link">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <div class="social-float__tooltip">Facebook</div>
+  </li>
+</ul>
 
 <!-- Álbum de fotos de un proyecto realizado -->
 <div id="album" class="album-overlay">
