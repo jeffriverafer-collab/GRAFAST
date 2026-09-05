@@ -253,48 +253,66 @@
     </div>
 
     <div class="projects__grid" id="projectsGrid">
-      <div class="project-card" data-category="residencial" data-reveal>
+      <div class="project-card" data-category="residencial" data-reveal
+           data-titulo="Condominio Los Álamos — Surco, Lima"
+           data-fotos='["img/trabajo 1.jpeg","img/trabajo4.jpeg","img/residencial.jpeg"]'>
         <img src="img/trabajo 1.jpeg" alt="Proyecto residencial Surco">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Residencial</span>
           <h4>Condominio Los Álamos</h4>
           <span><i class="fa-solid fa-location-dot"></i> Surco, Lima</span>
         </div>
       </div>
-      <div class="project-card" data-category="industrial" data-reveal>
+      <div class="project-card" data-category="industrial" data-reveal
+           data-titulo="Planta Textil Norte — Callao"
+           data-fotos='["img/trabajo2.jpeg","img/trabajo5.jpeg","img/trabajomanto.jpeg"]'>
         <img src="img/trabajo2.jpeg" alt="Proyecto industrial Callao">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Industrial</span>
           <h4>Planta Textil Norte</h4>
           <span><i class="fa-solid fa-location-dot"></i> Callao</span>
         </div>
       </div>
-      <div class="project-card" data-category="logistico" data-reveal>
+      <div class="project-card" data-category="logistico" data-reveal
+           data-titulo="Centro de Distribución Sur — Lurín, Lima"
+           data-fotos='["img/trabajo3.jpeg","img/trabajo6.jpeg","img/manto.jpg"]'>
         <img src="img/trabajo3.jpeg" alt="Almacén logístico Lurín">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Logístico</span>
           <h4>Centro de Distribución Sur</h4>
           <span><i class="fa-solid fa-location-dot"></i> Lurín, Lima</span>
         </div>
       </div>
-      <div class="project-card" data-category="residencial" data-reveal>
+      <div class="project-card" data-category="residencial" data-reveal
+           data-titulo="Villas San Antonio — La Molina, Lima"
+           data-fotos='["img/trabajo4.jpeg","img/trabajo 1.jpeg","img/proyecto1.jpeg"]'>
         <img src="img/trabajo4.jpeg" alt="Proyecto residencial La Molina">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Residencial</span>
           <h4>Villas San Antonio</h4>
           <span><i class="fa-solid fa-location-dot"></i> La Molina, Lima</span>
         </div>
       </div>
-      <div class="project-card" data-category="industrial" data-reveal>
+      <div class="project-card" data-category="industrial" data-reveal
+           data-titulo="Fábrica de Alimentos AQP — Arequipa"
+           data-fotos='["img/trabajo5.jpeg","img/trabajo2.jpeg","img/somos.jpeg"]'>
         <img src="img/trabajo5.jpeg" alt="Planta industrial Arequipa">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Industrial</span>
           <h4>Fábrica de Alimentos AQP</h4>
           <span><i class="fa-solid fa-location-dot"></i> Arequipa</span>
         </div>
       </div>
-      <div class="project-card" data-category="logistico" data-reveal>
+      <div class="project-card" data-category="logistico" data-reveal
+           data-titulo="Centro Logístico Norte — Trujillo"
+           data-fotos='["img/trabajo6.jpeg","img/trabajo3.jpeg","img/trabajomanto.jpeg"]'>
         <img src="img/trabajo6.jpeg" alt="Almacén logístico Trujillo">
+        <span class="ver-album"><i class="fa-solid fa-images"></i> Ver álbum</span>
         <div class="project-card__overlay">
           <span class="tag">Logístico</span>
           <h4>Centro Logístico Norte</h4>
@@ -465,6 +483,21 @@
       <button class="chat-option" data-msg="tejas">Tejas Asfálticas</button>
       <button class="chat-option" data-msg="imper">Impermeabilizantes</button>
     </div>
+  </div>
+</div>
+
+<!-- Álbum de fotos de un proyecto realizado -->
+<div id="album" class="album-overlay">
+  <div class="album-contenido">
+    <span class="cerrar" id="albumCerrar">&times;</span>
+
+    <img id="imagenAlbum" src="" alt="Foto del proyecto">
+    <p class="album-titulo" id="albumTitulo"></p>
+
+    <button class="anterior" id="albumAnterior" aria-label="Foto anterior">&#10094;</button>
+    <button class="siguiente" id="albumSiguiente" aria-label="Foto siguiente">&#10095;</button>
+
+    <div class="miniaturas" id="albumMiniaturas"></div>
   </div>
 </div>
 

@@ -158,6 +158,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
  
+  /* ---------- Álbum de fotos de proyectos ---------- */
+  const album = document.getElementById('album');
+  const imagenAlbum = document.getElementById('imagenAlbum');
+  const albumTitulo = document.getElementById('albumTitulo');
+  const albumMiniaturas = document.getElementById('albumMiniaturas');
+
+  if (album && imagenAlbum) {
+    let fotosProyecto = [];
+    let fotoActual = 0;
+
+    function mostrarFoto() {
+      imagenAlbum.src = fotosProyecto[fotoActual];
+      albumMiniaturas.querySelectorAll('img').forEach((img, i) => {
+        img.classList.toggle('activa', i === fotoActual);
+      });
+    }
+
+    function cambiarFoto(direccion) {
+      fotoActual = (fotoActual + direccion + fotosProyecto.length) % fotosProyecto.length;
+      mostrarFoto();
+    }
+
+    function abrirAlbum(card) {
+      fotosProyecto = JSON.parse(card.getAttribute('data-fotos') || '[]');
+      if (!fotosProyecto.length) return;
+
+      fotoActual = 0;
+      albumTitulo.textContent = card.getAttribute('data-titulo') || '';
+
+      albumMiniaturas.innerHTML = '';
+      fotosProyecto.forEach((src, i) => {
+        const thumb = document.createElement('img');
+        thumb.src = src;
+        thumb.addEventListener('click', () => { fotoActual = i; mostrarFoto(); });
+        albumMiniaturas.appendChild(thumb);
+      });
+
+      mostrarFoto();
+      album.style.display = 'flex';
+    }
+
+    function cerrarAlbum() {
+      album.style.display = 'none';
+    }
+
+    projectCards.forEach(card => {
+      if (card.hasAttribute('data-fotos')) {
+        card.addEventListener('click', () => abrirAlbum(card));
+      }
+    });
+
+    document.getElementById('albumCerrar').addEventListener('click', cerrarAlbum);
+    document.getElementById('albumAnterior').addEventListener('click', () => cambiarFoto(-1));
+    document.getElementById('albumSiguiente').addEventListener('click', () => cambiarFoto(1));
+
+    album.addEventListener('click', (e) => {
+      if (e.target === album) cerrarAlbum();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (album.style.display !== 'flex') return;
+      if (e.key === 'Escape') cerrarAlbum();
+      if (e.key === 'ArrowRight') cambiarFoto(1);
+      if (e.key === 'ArrowLeft') cambiarFoto(-1);
+    });
+  }
+
   /* ---------- Slider de testimonios ---------- */
   const track = document.getElementById('testimonialTrack');
   const dotsWrap = document.getElementById('testimonialDots');
