@@ -113,30 +113,22 @@ h1, h2, h3, h4 {
 
 .btn--block { width: 100%; justify-content: center; }
 
-/* ===== TOP BAR ===== */
-.top-bar {
-  background: var(--navy-950);
-  color: var(--gray-300);
-  font-size: 0.82rem;
-}
-.top-bar__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 24px;
-}
-.top-bar__contact { display: flex; gap: 22px; }
-.top-bar__contact a { color: var(--gray-300); transition: var(--transition); }
-.top-bar__contact a:hover { color: var(--orange-500); }
-.top-bar__social { display: flex; gap: 14px; }
-.top-bar__social a {
-  width: 26px; height: 26px;
+/* ===== ICONOS DE CONTACTO EN HEADER ===== */
+.header__contact-icons { display: flex; align-items: center; gap: 10px; }
+.icon-btn {
+  width: 42px; height: 42px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.08);
   border-radius: 50%;
+  font-size: 1.05rem;
+  color: var(--white);
   transition: var(--transition);
 }
-.top-bar__social a:hover { background: var(--orange-500); color: var(--navy-950); }
+.icon-btn--whatsapp { background: #25d366; }
+.icon-btn--whatsapp:hover { background: #1fb959; transform: translateY(-2px); }
+.icon-btn--phone,
+.icon-btn--mail { background: rgba(255,255,255,0.08); }
+.icon-btn--phone:hover,
+.icon-btn--mail:hover { background: var(--orange-500); color: var(--navy-950); transform: translateY(-2px); }
 
 /* ===== HEADER ===== */
 .header {
@@ -826,7 +818,7 @@ h1, h2, h3, h4 {
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed;
-  bottom: 100px; right: 26px;
+  bottom: 140px; right: 26px;
   width: 46px; height: 46px;
   border-radius: 50%;
   background: var(--orange-500);
@@ -842,50 +834,108 @@ h1, h2, h3, h4 {
 .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { background: var(--orange-600); }
 
-/* ===== REDES SOCIALES FLOTANTES ===== */
-.social-float {
+/* ===== REDES SOCIALES FLOTANTES (menú circular) ===== */
+.social-float-wrap {
   position: fixed;
-  bottom: 26px; right: 26px;
+  bottom: 16px; right: 16px;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none;
+  pointer-events: none;
 }
-.social-float__item { position: relative; }
-.social-float__link {
-  display: flex; align-items: center; justify-content: center;
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  background: var(--navy-950);
-  color: var(--white);
-  font-size: 1.3rem;
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition);
-}
-.social-float__link:hover { transform: scale(1.08); }
-.social-float__link[data-social="whatsapp"]:hover { background: #25d366; }
-.social-float__link[data-social="instagram"]:hover { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
-.social-float__link[data-social="tiktok"]:hover { background: #010101; }
-.social-float__link[data-social="facebook"]:hover { background: #1877f2; }
+.social-circle{
+  --wa:#25D366;
+  --fb:#1877F2;
+  --ig:linear-gradient(135deg,#F9CE34,#EE2A7B,#6228D7);
+  --tt:linear-gradient(135deg,#25F4EE,#010101 45%,#FE2C55);
 
-.social-float__tooltip {
-  position: absolute;
-  top: 50%; right: 64px;
-  transform: translateY(-50%) translateX(6px);
-  background: var(--white);
-  color: var(--navy-950);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
+  position:relative;
+  width:108px;
+  height:108px;
+  pointer-events:auto;
+  border-radius:50%;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  background:#ffffff;
+  border:1px solid rgba(15,15,20,.08);
+  box-shadow:
+    0 16px 36px -18px rgba(15,15,25,.28),
+    inset 0 0 0 1px rgba(255,255,255,.7);
+  transition:border-color .3s ease, box-shadow .3s ease;
 }
-.social-float__item:hover .social-float__tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+.social-circle:hover{
+  border-color:rgba(15,15,20,.14);
+  box-shadow:0 20px 42px -18px rgba(15,15,25,.32), inset 0 0 0 1px rgba(255,255,255,.7);
+}
+
+.social-circle a{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  text-decoration:none;
+  isolation:isolate;
+}
+
+.social-circle a::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:#ffffff;
+}
+
+.social-circle a::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:0;
+  transition:opacity .35s ease;
+}
+.social-circle a:hover::after{ opacity:1; }
+
+.social-circle .whatsapp::after{ background:var(--wa); }
+.social-circle .facebook::after{ background:var(--fb); }
+.social-circle .instagram::after{ background:var(--ig); }
+.social-circle .tiktok::after{ background:var(--tt); }
+
+.social-circle svg{
+  position:relative;
+  z-index:2;
+  width:14px;
+  height:14px;
+  fill:#9aa1ab;
+  transition:fill .3s ease, transform .3s ease;
+}
+.social-circle a:hover svg{ fill:#ffffff; }
+
+.social-circle .whatsapp{ border-radius:0 0 19px 0; }
+.social-circle .facebook{ border-radius:0 0 0 19px; }
+.social-circle .instagram{ border-radius:0 19px 0 0; }
+.social-circle .tiktok{ border-radius:19px 0 0 0; }
+
+.social-circle .whatsapp svg{ transform:translate(4px,4px); }
+.social-circle .facebook svg{ transform:translate(-4px,4px); }
+.social-circle .instagram svg{ transform:translate(4px,-4px); }
+.social-circle .tiktok svg{ transform:translate(-4px,-4px); }
+.social-circle .whatsapp:hover svg{ transform:translate(4px,4px) scale(1.12); }
+.social-circle .facebook:hover svg{ transform:translate(-4px,4px) scale(1.12); }
+.social-circle .instagram:hover svg{ transform:translate(4px,-4px) scale(1.12); }
+.social-circle .tiktok:hover svg{ transform:translate(-4px,-4px) scale(1.12); }
+
+.social-circle .divider{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(15,15,20,.08) calc(50% - 1px), rgba(15,15,20,.08) calc(50% + 1px), transparent calc(50% + 1px)),
+    linear-gradient(0deg, transparent calc(50% - 1px), rgba(15,15,20,.08) calc(50% - 1px), rgba(15,15,20,.08) calc(50% + 1px), transparent calc(50% + 1px));
+  -webkit-mask-image:radial-gradient(circle at 50% 50%, transparent 20px, #000 22px);
+  mask-image:radial-gradient(circle at 50% 50%, transparent 20px, #000 22px);
+}
 
 /* ===== SCROLL REVEAL ===== */
 [data-reveal] {
@@ -903,7 +953,7 @@ h1, h2, h3, h4 {
 
 /* ===== MENÚ MÓVIL ABIERTO: bloquea el scroll y oculta widgets flotantes ===== */
 body.nav-open { overflow: hidden; }
-body.nav-open .social-float,
+body.nav-open .social-float-wrap,
 body.nav-open .back-to-top { display: none; }
 
 /* ===== RESPONSIVE ===== */
@@ -917,7 +967,6 @@ body.nav-open .back-to-top { display: none; }
 }
 
 @media (max-width: 860px) {
-  .top-bar__contact a:nth-child(2) { display: none; }
   .nav {
     position: fixed;
     top: 0; right: -100%;
@@ -957,7 +1006,6 @@ body.nav-open .back-to-top { display: none; }
   }
   .dropdown__col ul a { margin: 0; }
   .nav__toggle { display: flex; }
-  .header__actions .btn--whatsapp span { display: none; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
   .why__grid { grid-template-columns: 1fr; }
   .projects__grid { grid-template-columns: 1fr; }
@@ -969,6 +1017,19 @@ body.nav-open .back-to-top { display: none; }
 
 @media (max-width: 480px) {
   .stats__grid { grid-template-columns: 1fr; }
-  .social-float { bottom: 18px; right: 18px; gap: 10px; }
-  .social-float__link { width: 46px; height: 46px; font-size: 1.15rem; }
+  .social-float-wrap { bottom: 10px; right: 10px; }
+  .social-circle { width: 79px; height: 79px; }
+  .social-circle svg { width: 11px; height: 11px; }
+  .social-circle .whatsapp{ border-radius:0 0 13px 0; }
+  .social-circle .facebook{ border-radius:0 0 0 13px; }
+  .social-circle .instagram{ border-radius:0 13px 0 0; }
+  .social-circle .tiktok{ border-radius:13px 0 0 0; }
+  .social-circle .whatsapp svg{ transform:translate(3px,3px); }
+  .social-circle .facebook svg{ transform:translate(-3px,3px); }
+  .social-circle .instagram svg{ transform:translate(3px,-3px); }
+  .social-circle .tiktok svg{ transform:translate(-3px,-3px); }
+  .social-circle .divider{
+    -webkit-mask-image:radial-gradient(circle at 50% 50%, transparent 14px, #000 16px);
+    mask-image:radial-gradient(circle at 50% 50%, transparent 14px, #000 16px);
+  }
 }
