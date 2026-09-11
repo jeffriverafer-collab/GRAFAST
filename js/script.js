@@ -311,6 +311,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
  
       if (isValid) {
+        const name = form.elements.name.value.trim();
+        const phone = form.elements.phone.value.trim();
+        const email = form.elements.email.value.trim();
+        const message = form.elements.message.value.trim();
+        const productField = form.elements.product;
+        const productLabel = productField && productField.value
+          ? productField.options[productField.selectedIndex].text
+          : '';
+
+        let texto = `Hola, soy ${name}. Mi teléfono es ${phone} y mi correo es ${email}.`;
+        if (productLabel) texto += ` Estoy interesado en: ${productLabel}.`;
+        texto += ` ${message}`;
+
+        window.open(`https://wa.me/51901355679?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+
         formSuccess.classList.add('show');
         form.reset();
         setTimeout(() => formSuccess.classList.remove('show'), 6000);
