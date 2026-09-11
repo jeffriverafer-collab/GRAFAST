@@ -1,0 +1,47 @@
+# ============================================================
+# GRAFAST — .gitignore
+# Agrupado por motivo: seguridad primero, higiene de repo después.
+# Ver FRAMEWORK-DESARROLLO.md para el contexto completo.
+# ============================================================
+
+# ---- Secretos y credenciales: NUNCA deben llegar al repositorio ----
+# (relevante desde la Fase 1 del framework, al conectar Formspree/EmailJS
+# u otro servicio que use claves privadas de servidor)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.crt
+credentials.json
+serviceAccount*.json
+config.local.*
+secrets/
+
+# ---- Dependencias y artefactos de build ----
+# (aplica si se adopta Eleventy/11ty u otra herramienta en la Fase 3)
+node_modules/
+dist/
+_site/
+.cache/
+.parcel-cache/
+npm-debug.log*
+
+# ---- Archivos de sistema operativo ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Configuración personal de editor/IDE ----
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.user
+
+# ---- Backups y temporales del propio editor ----
+*.bak
+*.tmp
+*.swp
+*~

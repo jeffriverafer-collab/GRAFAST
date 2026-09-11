@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeffriverafer-collab.github.io/GRAFAST/sitemap.xml
