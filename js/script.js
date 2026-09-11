@@ -7,7 +7,15 @@
    ========================================================= */
  
 document.addEventListener('DOMContentLoaded', () => {
- 
+
+  /* ---------- Ofuscación del correo (evita cosecha por bots de spam) ---------- */
+  document.querySelectorAll('.js-email-link').forEach(link => {
+    link.href = `mailto:${link.dataset.user}@${link.dataset.domain}`;
+  });
+  document.querySelectorAll('.js-email-text').forEach(span => {
+    span.textContent = `${span.dataset.user}@${span.dataset.domain}`;
+  });
+
   /* ---------- Año dinámico en el footer ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
