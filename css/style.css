@@ -853,6 +853,77 @@ h1, h2, h3, h4 {
 
 .products__more { text-align: center; margin-top: 44px; }
 
+/* ===== PRODUCT ITEM (catálogo: imagen + cuadro con opciones y cotizar) ===== */
+.product-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.product-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.product-item__img {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--gray-100);
+}
+.product-item__body { display: flex; flex-direction: column; gap: 12px; flex: 1; padding: 18px; }
+.product-item__title {
+  position: relative;
+  padding-bottom: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.product-item__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px; width: 40px;
+  background: var(--amber-700);
+}
+.product-item__desc { font-size: .87rem; line-height: 1.5; color: var(--gray-500); }
+.product-item__cta { margin-top: auto; padding: 11px 20px; font-size: .9rem; }
+
+.product-options { border-top: 1px solid var(--gray-100); padding-top: 12px; }
+.product-options__label {
+  display: block;
+  font-family: var(--font-head);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 8px;
+}
+.product-options__label strong { color: var(--navy-950); text-transform: none; letter-spacing: 0; font-size: .88rem; }
+.product-options__list { display: flex; flex-wrap: wrap; gap: 8px; }
+.option-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--gray-700);
+  font: 500 .82rem var(--font-body);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.option-btn:hover { border-color: var(--orange-500); }
+.option-btn.is-active {
+  border-color: var(--orange-500);
+  background: var(--orange-100);
+  color: var(--navy-950);
+  font-weight: 600;
+}
+.option-btn__swatch { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); }
+.option-btn i { font-size: .8rem; color: var(--gray-500); }
+
 /* ===== FLIP CARDS: LO QUE OFRECEMOS ===== */
 .offer-flip-grid {
   display: flex;

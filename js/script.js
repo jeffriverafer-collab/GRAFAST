@@ -358,5 +358,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
- 
+
+  /* ---------- Opciones de producto (color / presentación) ---------- */
+  const productItems = document.querySelectorAll('.product-item[data-option-label]');
+  const updateQuoteLink = (item) => {
+    const active = item.querySelector('.option-btn.is-active');
+    const msg = `Hola, quiero cotizar: ${item.dataset.product} (${item.dataset.optionLabel}: ${active.dataset.value})`;
+    item.querySelector('.product-item__cta').href = 'https://wa.me/51901355679?text=' + encodeURIComponent(msg);
+  };
+  productItems.forEach((item) => {
+    updateQuoteLink(item);
+    item.querySelectorAll('.option-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        item.querySelectorAll('.option-btn').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        item.querySelector('.product-item__img').style.backgroundImage = `url(${btn.dataset.img})`;
+        item.querySelector('[data-selected]').textContent = btn.dataset.value;
+        updateQuoteLink(item);
+      });
+    });
+  });
+
 });
