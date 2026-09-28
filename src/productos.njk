@@ -27,23 +27,25 @@ description: "Catálogo completo de Grafast S.A.C.: impermeabilizantes, emulsion
     </div>
     <div class="catalog-grid" data-reveal>
       {%- for p in cat.productos %}
-      <article class="product-item" data-product="{{ p.nombre }}"{% if p.opciones %} data-option-label="{{ p.opcionEtiqueta }}"{% endif %}>
+      <article class="product-item" data-product="{{ p.nombre }}">
         <div class="product-item__img" style="background-image:url({{ p.img }})"></div>
         <div class="product-item__body">
           <h3 class="product-item__title">{{ p.nombre }}</h3>
           <p class="product-item__desc">{{ p.descripcion }}</p>
-          {%- if p.opciones %}
-          <div class="product-options">
-            <span class="product-options__label">{{ p.opcionEtiqueta }}: <strong data-selected>{{ p.opciones[0].valor }}</strong></span>
+          {#- Un bloque por grupo de opciones (Color, Tipo, Presentación…).
+              Una opción con "img" cambia la foto; con "descripcion", el texto. -#}
+          {%- for g in p.grupos %}
+          <div class="product-options" data-option-label="{{ g.etiqueta }}">
+            <span class="product-options__label">{{ g.etiqueta }}: <strong data-selected>{{ g.opciones[0].valor }}</strong></span>
             <div class="product-options__list">
-              {%- for o in p.opciones %}
-              <button type="button" class="option-btn{% if loop.first %} is-active{% endif %}" data-value="{{ o.valor }}" data-img="{{ o.img }}">
+              {%- for o in g.opciones %}
+              <button type="button" class="option-btn{% if loop.first %} is-active{% endif %}" data-value="{{ o.valor }}"{% if o.img %} data-img="{{ o.img }}"{% endif %}{% if o.descripcion %} data-desc="{{ o.descripcion }}"{% endif %}>
                 {%- if o.color %}<span class="option-btn__swatch" style="background:{{ o.color }}"></span>{% else %}<i class="fa-solid {{ o.icono }}"></i>{% endif %}{{ o.valor -}}
               </button>
               {%- endfor %}
             </div>
           </div>
-          {%- endif %}
+          {%- endfor %}
           <a class="btn btn--whatsapp btn--block product-item__cta" href="{{ ('Hola, quiero cotizar: ' + p.nombre) | whatsapp }}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp</a>
         </div>
       </article>

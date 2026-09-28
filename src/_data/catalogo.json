@@ -8,12 +8,16 @@
         "nombre": "Mantos Asfálticos",
         "img": "img/productos/manto.jpg",
         "descripcion": "Lámina asfáltica prefabricada de alta resistencia, ideal para impermeabilizar techos, terrazas y superficies expuestas a lluvia intensa y rayos UV.",
-        "opcionEtiqueta": "Color",
-        "opciones": [
-          { "valor": "Rojo", "img": "img/productos/manto.jpg", "color": "#b3261e" },
-          { "valor": "Verde", "img": "img/proyectos/trabajomanto.jpeg", "color": "#2e7d32" },
-          { "valor": "Negro", "img": "img/proyectos/trabajo-1.jpeg", "color": "#1a1a1a" },
-          { "valor": "Plomo", "img": "img/proyectos/trabajo2.jpeg", "color": "#8a8f94" }
+        "grupos": [
+          {
+            "etiqueta": "Color",
+            "opciones": [
+              { "valor": "Rojo", "img": "img/productos/manto.jpg", "color": "#b3261e" },
+              { "valor": "Verde", "img": "img/proyectos/trabajomanto.jpeg", "color": "#2e7d32" },
+              { "valor": "Negro", "img": "img/proyectos/trabajo-1.jpeg", "color": "#1a1a1a" },
+              { "valor": "Plomo", "img": "img/proyectos/trabajo2.jpeg", "color": "#8a8f94" }
+            ]
+          }
         ]
       },
       {
@@ -25,12 +29,16 @@
         "nombre": "Teja Asfáltica",
         "img": "img/productos/teja.jpg",
         "descripcion": "Teja asfáltica decorativa y resistente, perfecta para techos residenciales que buscan estética y protección duradera.",
-        "opcionEtiqueta": "Color",
-        "opciones": [
-          { "valor": "Rojo", "img": "img/productos/manto-rojo.jpeg", "color": "#b3261e" },
-          { "valor": "Dorado", "img": "img/productos/manto-dorado.jpeg", "color": "#c9a227" },
-          { "valor": "Negro", "img": "img/productos/manto-negro.jpeg", "color": "#1a1a1a" },
-          { "valor": "Plomo", "img": "img/productos/manto-plomo.jpeg", "color": "#8a8f94" }
+        "grupos": [
+          {
+            "etiqueta": "Color",
+            "opciones": [
+              { "valor": "Rojo", "img": "img/productos/manto-rojo.jpeg", "color": "#b3261e" },
+              { "valor": "Dorado", "img": "img/productos/manto-dorado.jpeg", "color": "#c9a227" },
+              { "valor": "Negro", "img": "img/productos/manto-negro.jpeg", "color": "#1a1a1a" },
+              { "valor": "Plomo", "img": "img/productos/manto-plomo.jpeg", "color": "#8a8f94" }
+            ]
+          }
         ]
       }
     ]
@@ -42,36 +50,31 @@
     "alt": true,
     "productos": [
       {
-        "nombre": "Emulsión de Rotura Lenta",
-        "img": "img/productos/emulsionr.png",
-        "descripcion": "Emulsión asfáltica de curado lento, ideal para riegos de imprimación y mezclas en frío que requieren mayor tiempo de trabajabilidad.",
-        "opcionEtiqueta": "Presentación",
-        "opciones": [
-          { "valor": "55 galones", "img": "img/productos/emulsionr.png", "icono": "fa-oil-can" },
-          { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
-          { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
-        ]
-      },
-      {
-        "nombre": "Emulsión de Rotura Intermedia",
-        "img": "img/productos/emulsioni.png",
-        "descripcion": "Emulsión de rotura intermedia diseñada para mezclas asfálticas en frío, con buena adherencia y estabilidad.",
-        "opcionEtiqueta": "Presentación",
-        "opciones": [
-          { "valor": "55 galones", "img": "img/productos/emulsioni.png", "icono": "fa-oil-can" },
-          { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
-          { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
-        ]
-      },
-      {
-        "nombre": "Emulsión de Rotura Rápida",
-        "img": "img/productos/emulsionl.png",
-        "descripcion": "Emulsión de rotura rápida para riegos de liga y sellado de fisuras, con adherencia inmediata sobre la superficie.",
-        "opcionEtiqueta": "Presentación",
-        "opciones": [
-          { "valor": "55 galones", "img": "img/productos/emulsionl.png", "icono": "fa-oil-can" },
-          { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
-          { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
+        "nombre": "Emulsión Asfáltica",
+        "img": "img/productos/em-cilindro.jpeg",
+        "descripcion": "Emulsión asfáltica de rotura rápida para riegos de liga y sellado de fisuras, con adherencia inmediata sobre la superficie.",
+        "menu": [
+          "Emulsión de Rotura Rápida",
+          "Emulsión de Rotura Intermedia",
+          "Emulsión de Rotura Lenta"
+        ],
+        "grupos": [
+          {
+            "etiqueta": "Tipo",
+            "opciones": [
+              { "valor": "Rotura Rápida", "icono": "fa-bolt", "descripcion": "Emulsión asfáltica de rotura rápida para riegos de liga y sellado de fisuras, con adherencia inmediata sobre la superficie." },
+              { "valor": "Rotura Intermedia", "icono": "fa-gauge", "descripcion": "Emulsión asfáltica de rotura intermedia diseñada para mezclas asfálticas en frío, con buena adherencia y estabilidad." },
+              { "valor": "Rotura Lenta", "icono": "fa-hourglass-half", "descripcion": "Emulsión asfáltica de curado lento, ideal para riegos de imprimación y mezclas en frío que requieren mayor tiempo de trabajabilidad." }
+            ]
+          },
+          {
+            "etiqueta": "Presentación",
+            "opciones": [
+              { "valor": "55 galones", "img": "img/productos/em-cilindro.jpeg", "icono": "fa-oil-can" },
+              { "valor": "5 galones", "img": "img/productos/emul-balde.jpeg", "icono": "fa-bucket" },
+              { "valor": "1 galón", "img": "img/productos/emul-gal.jpeg", "icono": "fa-jug-detergent" }
+            ]
+          }
         ]
       }
     ]
@@ -108,22 +111,30 @@
         "nombre": "Asfalto RC-250",
         "img": "img/productos/rc250.png",
         "descripcion": "Asfalto líquido de curado rápido RC-250, usado en riegos de liga y tratamientos superficiales de carreteras.",
-        "opcionEtiqueta": "Presentación",
-        "opciones": [
-          { "valor": "55 galones", "img": "img/productos/rc250.png", "icono": "fa-oil-can" },
-          { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
-          { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
+        "grupos": [
+          {
+            "etiqueta": "Presentación",
+            "opciones": [
+              { "valor": "55 galones", "img": "img/productos/rc250.png", "icono": "fa-oil-can" },
+              { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
+              { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
+            ]
+          }
         ]
       },
       {
         "nombre": "Asfalto MC-30",
         "img": "img/productos/mc30.png",
         "descripcion": "Asfalto líquido de curado medio MC-30, empleado en riegos de imprimación sobre bases granulares.",
-        "opcionEtiqueta": "Presentación",
-        "opciones": [
-          { "valor": "55 galones", "img": "img/productos/mc30.png", "icono": "fa-oil-can" },
-          { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
-          { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
+        "grupos": [
+          {
+            "etiqueta": "Presentación",
+            "opciones": [
+              { "valor": "55 galones", "img": "img/productos/mc30.png", "icono": "fa-oil-can" },
+              { "valor": "5 galones", "img": "img/productos/membrana.png", "icono": "fa-bucket" },
+              { "valor": "1 galón", "img": "img/productos/manto.jpg", "icono": "fa-jug-detergent" }
+            ]
+          }
         ]
       }
     ]

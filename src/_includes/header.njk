@@ -18,7 +18,10 @@
               <a href="{{ rutaCatalogo }}#{{ cat.id }}" class="dropdown__title"><i class="fa-solid {{ cat.icono }}"></i> {{ cat.nombre }}</a>
               <ul>
                 {%- for p in cat.productos %}
-                <li><a href="{{ rutaCatalogo }}#{{ cat.id }}">{{ p.nombre }}</a></li>
+                {#- "menu" permite listar variantes de un producto (p. ej. los tipos de emulsión) -#}
+                {%- for nombre in (p.menu or [p.nombre]) %}
+                <li><a href="{{ rutaCatalogo }}#{{ cat.id }}">{{ nombre }}</a></li>
+                {%- endfor %}
                 {%- endfor %}
               </ul>
               {%- if loop.last %}
