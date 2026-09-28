@@ -45,3 +45,12 @@ desktop.ini
 *.tmp
 *.swp
 *~
+
+# ---- Documentos personales: el repositorio es público ----
+# (el sitio no usa documentos de Office; evita publicar un CV u otros
+# archivos con datos personales por un `git add .` accidental)
+CV_*
+*.docx
+*.doc
+*.xlsx
+*.pptx
