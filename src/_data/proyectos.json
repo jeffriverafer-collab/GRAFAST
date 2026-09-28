@@ -1,0 +1,50 @@
+[
+  {
+    "nombre": "Condominio Los Álamos",
+    "ubicacion": "Surco, Lima",
+    "categoria": "residencial",
+    "etiqueta": "Residencial",
+    "alt": "Proyecto residencial Surco",
+    "fotos": ["img/proyectos/trabajo-1.jpeg", "img/proyectos/trabajo4.jpeg", "img/proyectos/residencial.jpeg"]
+  },
+  {
+    "nombre": "Planta Textil Norte",
+    "ubicacion": "Callao",
+    "categoria": "industrial",
+    "etiqueta": "Industrial",
+    "alt": "Proyecto industrial Callao",
+    "fotos": ["img/proyectos/trabajo2.jpeg", "img/proyectos/trabajo5.jpeg", "img/proyectos/trabajomanto.jpeg"]
+  },
+  {
+    "nombre": "Centro de Distribución Sur",
+    "ubicacion": "Lurín, Lima",
+    "categoria": "logistico",
+    "etiqueta": "Logístico",
+    "alt": "Almacén logístico Lurín",
+    "fotos": ["img/proyectos/trabajo3.jpeg", "img/proyectos/trabajo6.jpeg", "img/productos/manto.jpg"]
+  },
+  {
+    "nombre": "Villas San Antonio",
+    "ubicacion": "La Molina, Lima",
+    "categoria": "residencial",
+    "etiqueta": "Residencial",
+    "alt": "Proyecto residencial La Molina",
+    "fotos": ["img/proyectos/trabajo4.jpeg", "img/proyectos/trabajo-1.jpeg", "img/proyectos/proyecto1.jpeg"]
+  },
+  {
+    "nombre": "Fábrica de Alimentos AQP",
+    "ubicacion": "Arequipa",
+    "categoria": "industrial",
+    "etiqueta": "Industrial",
+    "alt": "Planta industrial Arequipa",
+    "fotos": ["img/proyectos/trabajo5.jpeg", "img/proyectos/trabajo2.jpeg", "img/proyectos/somos.jpeg"]
+  },
+  {
+    "nombre": "Centro Logístico Norte",
+    "ubicacion": "Trujillo",
+    "categoria": "logistico",
+    "etiqueta": "Logístico",
+    "alt": "Almacén logístico Trujillo",
+    "fotos": ["img/proyectos/trabajo6.jpeg", "img/proyectos/trabajo3.jpeg", "img/proyectos/trabajomanto.jpeg"]
+  }
+]

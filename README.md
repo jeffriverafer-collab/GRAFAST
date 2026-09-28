@@ -1,59 +1,83 @@
 # Grafast — Sitio Web
 
-Sitio estático (HTML, CSS y JavaScript puro) para Grafast S.A.C. — Asfaltos y Servicios Generales.
+Sitio estático para Grafast S.A.C. — Asfaltos y Servicios Generales. Se genera con [Eleventy (11ty)](https://www.11ty.dev/): el header, el footer y los datos (contacto, productos, servicios, proyectos) viven en un solo lugar y se insertan en las 3 páginas al compilar. El resultado sigue siendo HTML, CSS y JavaScript puro, sin backend.
 
 ## Estructura del proyecto
 
 ```
 GRAFAST/
-├── index.html            Página principal
-├── productos.html        Catálogo de productos
-├── servicios.html        Catálogo de servicios
-├── css/style.css         Estilos
-├── js/script.js          Interactividad (menú, slider, formulario, etc.)
-├── img/
-│   ├── logo/             Logo de Grafast
-│   ├── productos/        Fotos de productos (mantos, emulsiones, asfaltos)
-│   ├── proyectos/        Fotos de obras y proyectos realizados
-│   └── Fondo.jpeg        Imagen de fondo del hero
-├── favicon.ico / apple-touch-icon.png   Ícono del sitio
-├── robots.txt / sitemap.xml             SEO/indexación
-└── FRAMEWORK-DESARROLLO.md              Diagnóstico y hoja de ruta técnica
+├── src/                          ← lo que se edita
+│   ├── _data/
+│   │   ├── contacto.json         WhatsApp, teléfono, correo, dirección, redes (fuente única)
+│   │   ├── catalogo.json         Productos por categoría, con opciones de color/presentación
+│   │   ├── servicios.json        Servicios por especialidad
+│   │   └── proyectos.json        Proyectos realizados (filtro y álbum de fotos)
+│   ├── _includes/
+│   │   ├── base.njk              Layout común: <head>, header, footer, scripts
+│   │   ├── header.njk            Menú de navegación (una sola vez para las 3 páginas)
+│   │   ├── footer.njk            Pie de página
+│   │   ├── album.njk             Visor de fotos de proyectos (solo inicio)
+│   │   └── redes-flotantes.njk   Botones flotantes de redes (solo inicio)
+│   ├── index.njk                 → index.html
+│   ├── productos.njk             → productos.html
+│   └── servicios.njk             → servicios.html
+├── css/style.css                 Estilos
+├── js/
+│   ├── main.js                   Punto de entrada: inicia cada módulo
+│   └── modules/                  Un archivo por funcionalidad (nav, productos, contacto, …)
+├── img/                          logo/, productos/, proyectos/
+├── favicon.ico / apple-touch-icon.png
+├── robots.txt / sitemap.xml
+├── eleventy.config.js            Configuración de Eleventy
+├── .github/workflows/deploy.yml  Compila y publica en GitHub Pages en cada push a main
+└── FRAMEWORK-DESARROLLO.md       Diagnóstico y hoja de ruta técnica
 ```
 
-No requiere backend, base de datos ni proceso de build: son archivos estáticos que cualquier navegador puede abrir directamente.
+`_site/` (sitio generado) y `node_modules/` (dependencias) no se suben a Git.
+
+## Tareas frecuentes
+
+| Quiero… | Edito |
+|---|---|
+| Cambiar el número de WhatsApp, teléfono o correo | `src/_data/contacto.json` |
+| Agregar o modificar un producto | `src/_data/catalogo.json` |
+| Agregar o modificar un servicio | `src/_data/servicios.json` |
+| Agregar un proyecto realizado | `src/_data/proyectos.json` |
+| Cambiar el menú | `src/_includes/header.njk` |
+| Cambiar textos de una página | `src/index.njk`, `src/productos.njk` o `src/servicios.njk` |
 
 ## Ver el sitio en tu computadora
 
-Abre `index.html` con doble clic, o levanta un servidor local (recomendado para que las rutas relativas funcionen bien):
+Requisito: [Node.js](https://nodejs.org) versión LTS.
 
 ```bash
-python -m http.server 8091
+npm install
 ```
 
-Luego visita `http://localhost:8091` en tu navegador.
+```bash
+npm start
+```
+
+Luego visita `http://localhost:8080`. La página se recarga sola al guardar cambios. Para generar el sitio final en `_site/` sin servidor: `npm run build`.
+
+> Ya no se puede abrir con doble clic: los archivos de `src/` son plantillas y el JavaScript usa módulos, que el navegador bloquea bajo `file://`.
 
 ## Publicar el sitio con GitHub Pages (gratis)
 
-Como el repositorio ya está en GitHub, la forma más simple de publicarlo es con **GitHub Pages**:
+La publicación la hace el workflow `.github/workflows/deploy.yml`, que compila con Eleventy y publica `_site/`.
 
-1. Entra a tu repositorio: `https://github.com/jeffriverafer-collab/GRAFAST`
-2. Ve a **Settings** (Configuración) → **Pages** (en el menú izquierdo).
-3. En **Build and deployment**, en "Source" selecciona **Deploy from a branch**.
-4. En "Branch" elige **main** y la carpeta **/ (root)**. Guarda con **Save**.
-5. Espera 1-2 minutos. GitHub mostrará la URL pública, con este formato:
+Configuración (una sola vez):
 
-   ```
-   https://jeffriverafer-collab.github.io/GRAFAST/
-   ```
+1. Entra a `https://github.com/jeffriverafer-collab/GRAFAST` → **Settings** → **Pages**.
+2. En **Build and deployment** → "Source", selecciona **GitHub Actions**.
 
-6. Cada vez que hagas `git push` a `main`, el sitio se actualiza automáticamente en esa URL.
+Desde entonces, cada `git push` a `main` actualiza el sitio en `https://jeffriverafer-collab.github.io/GRAFAST/`. El progreso se ve en la pestaña **Actions** del repositorio: ✅ verde = publicado, ❌ rojo = falló (el detalle indica por qué).
 
 ### Dominio propio (opcional)
 
-Si más adelante compras un dominio (por ejemplo `grafast.pe`), en la misma sección **Settings → Pages** puedes agregarlo en "Custom domain" y seguir las instrucciones para configurar los registros DNS con tu proveedor de dominio.
+Si más adelante compras un dominio (por ejemplo `grafast.pe`), en **Settings → Pages** puedes agregarlo en "Custom domain" y configurar los registros DNS con tu proveedor. Recuerda actualizar también las URLs de `robots.txt` y `sitemap.xml`.
 
 ## Notas
 
-- Los formularios de contacto y boletín son solo de interfaz (frontend): no envían datos a ningún servidor todavía. Si necesitas que las solicitudes lleguen a un correo o CRM, hay que conectarlos a un servicio como Formspree, EmailJS o un backend propio.
-- Los enlaces de WhatsApp usan el número `+51 901 355 679` y el enlace de llamada (`tel:`) usa `+51 927 625 524`; ambos se repiten en `index.html`, `productos.html` y `servicios.html` — si cambia alguno, actualízalo en las 3 páginas.
+- Los formularios de contacto y boletín no envían datos a un servidor: el de contacto abre WhatsApp con el mensaje redactado; el boletín es solo de interfaz.
+- El número de WhatsApp se define únicamente en `src/_data/contacto.json`; las plantillas lo usan con el filtro `whatsapp` y el JavaScript lo lee del atributo `data-whatsapp` de `<body>`.
