@@ -1,70 +1,42 @@
 # Grafast — Sitio Web
 
-Sitio estático para Grafast S.A.C. — Asfaltos y Servicios Generales. Se genera con [Eleventy (11ty)](https://www.11ty.dev/): el header, el footer y los datos (contacto, productos, servicios, proyectos) viven en un solo lugar y se insertan en las 3 páginas al compilar. El resultado sigue siendo HTML, CSS y JavaScript puro, sin backend.
+Sitio estático para Grafast S.A.C. — Asfaltos y Servicios Generales. Hecho con HTML, CSS y JavaScript puro: sin framework, sin instalaciones y sin backend.
 
 ## Estructura del proyecto
 
 ```
 GRAFAST/
-├── src/                          ← lo que se edita
-│   ├── _data/
-│   │   ├── contacto.json         WhatsApp, teléfono, correo, dirección, redes (fuente única)
-│   │   ├── catalogo.json         Productos por categoría, con opciones de color/presentación
-│   │   ├── servicios.json        Servicios por especialidad
-│   │   └── proyectos.json        Proyectos realizados (filtro y álbum de fotos)
-│   ├── _includes/
-│   │   ├── base.njk              Layout común: <head>, header, footer, scripts
-│   │   ├── header.njk            Menú de navegación (una sola vez para las 3 páginas)
-│   │   ├── footer.njk            Pie de página
-│   │   ├── album.njk             Visor de fotos de proyectos (solo inicio)
-│   │   └── redes-flotantes.njk   Botones flotantes de redes (solo inicio)
-│   ├── index.njk                 → index.html
-│   ├── productos.njk             → productos.html
-│   └── servicios.njk             → servicios.html
+├── index.html                    Página de inicio
+├── productos.html                Catálogo de productos
+├── servicios.html                Servicios
 ├── css/style.css                 Estilos
-├── js/
-│   ├── main.js                   Punto de entrada: inicia cada módulo
-│   └── modules/                  Un archivo por funcionalidad (nav, productos, contacto, …)
+├── js/script.js                  JavaScript (menú, animaciones, álbum, formulario, opciones de producto…)
 ├── img/                          logo/, productos/, proyectos/
 ├── favicon.ico / apple-touch-icon.png
 ├── robots.txt / sitemap.xml
-├── eleventy.config.js            Configuración de Eleventy
-├── .github/workflows/deploy.yml  Compila y publica en GitHub Pages en cada push a main
+├── .github/workflows/deploy.yml  Publica el sitio en GitHub Pages en cada push a main
 └── FRAMEWORK-DESARROLLO.md       Diagnóstico y hoja de ruta técnica
 ```
 
-`_site/` (sitio generado) y `node_modules/` (dependencias) no se suben a Git.
-
 ## Tareas frecuentes
+
+El header y el footer están repetidos en las 3 páginas: si cambias el menú, un teléfono o una red social, cámbialo en `index.html`, `productos.html` y `servicios.html`.
 
 | Quiero… | Edito |
 |---|---|
-| Cambiar el número de WhatsApp, teléfono o correo | `src/_data/contacto.json` |
-| Agregar o modificar un producto | `src/_data/catalogo.json` |
-| Agregar o modificar un servicio | `src/_data/servicios.json` |
-| Agregar un proyecto realizado | `src/_data/proyectos.json` |
-| Cambiar el menú | `src/_includes/header.njk` |
-| Cambiar textos de una página | `src/index.njk`, `src/productos.njk` o `src/servicios.njk` |
+| Cambiar el número de WhatsApp | Los enlaces `wa.me/51…` y el atributo `data-whatsapp` de `<body>` en las 3 páginas (búscalo con Ctrl+Shift+F en VS Code) |
+| Agregar o modificar un producto | `productos.html` |
+| Agregar o modificar un servicio | `servicios.html` |
+| Agregar un proyecto realizado | `index.html`, sección de proyectos |
+| Cambiar estilos | `css/style.css` |
 
 ## Ver el sitio en tu computadora
 
-Requisito: [Node.js](https://nodejs.org) versión LTS.
-
-```bash
-npm install
-```
-
-```bash
-npm start
-```
-
-Luego visita `http://localhost:8080`. La página se recarga sola al guardar cambios. Para generar el sitio final en `_site/` sin servidor: `npm run build`.
-
-> Ya no se puede abrir con doble clic: los archivos de `src/` son plantillas y el JavaScript usa módulos, que el navegador bloquea bajo `file://`.
+Abre `index.html` con doble clic en el navegador. No necesitas instalar nada.
 
 ## Publicar el sitio con GitHub Pages (gratis)
 
-La publicación la hace el workflow `.github/workflows/deploy.yml`, que compila con Eleventy y publica `_site/`.
+La publicación la hace el workflow `.github/workflows/deploy.yml`, que sube los archivos tal cual (no compila nada).
 
 Configuración (una sola vez):
 
@@ -80,4 +52,4 @@ Si más adelante compras un dominio (por ejemplo `grafast.pe`), en **Settings �
 ## Notas
 
 - Los formularios de contacto y boletín no envían datos a un servidor: el de contacto abre WhatsApp con el mensaje redactado; el boletín es solo de interfaz.
-- El número de WhatsApp se define únicamente en `src/_data/contacto.json`; las plantillas lo usan con el filtro `whatsapp` y el JavaScript lo lee del atributo `data-whatsapp` de `<body>`.
+- El JavaScript del formulario y de las opciones de producto toma el número de WhatsApp del atributo `data-whatsapp` de `<body>`.

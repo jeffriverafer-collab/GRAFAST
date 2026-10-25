@@ -1,4 +1,4 @@
-# Compila el sitio con Eleventy y lo publica en GitHub Pages en cada push a main.
+# Publica el sitio (HTML, CSS y JS tal cual, sin compilar) en GitHub Pages en cada push a main.
 # Requisito (una sola vez): Settings → Pages → Source: "GitHub Actions".
 name: Deploy a GitHub Pages
 
@@ -21,15 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: .
 
   deploy:
     needs: build

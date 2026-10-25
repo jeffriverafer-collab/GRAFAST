@@ -1,0 +1,431 @@
+/* =========================================================
+   GRAFAST — JavaScript del sitio
+   Cada sección se encarga de una funcionalidad y no hace nada
+   si su elemento no existe en la página actual.
+   ========================================================= */
+
+/* ---------- Enlaces de WhatsApp ----------
+   El número se escribe en <body data-whatsapp="..."> de cada página. */
+function whatsappLink(texto) {
+  const base = `https://wa.me/${document.body.dataset.whatsapp}`;
+  return texto ? `${base}?text=${encodeURIComponent(texto)}` : base;
+}
+
+/* ---------- Ofuscación del correo (evita cosecha por bots de spam) ---------- */
+function initEmail() {
+  document.querySelectorAll('.js-email-link').forEach(link => {
+    link.href = `mailto:${link.dataset.user}@${link.dataset.domain}`;
+  });
+  document.querySelectorAll('.js-email-text').forEach(span => {
+    span.textContent = `${span.dataset.user}@${span.dataset.domain}`;
+  });
+}
+
+/* ---------- Año dinámico y boletín del footer ---------- */
+function initFooter() {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = newsletterForm.querySelector('input');
+      if (input && input.value.trim()) {
+        input.value = '';
+        input.placeholder = '¡Gracias por suscribirte!';
+        setTimeout(() => { input.placeholder = 'Tu correo electrónico'; }, 4000);
+      }
+    });
+  }
+}
+
+/* ---------- Header, menú móvil y botón "volver arriba" ---------- */
+function initNav() {
+  const header = document.getElementById('header');
+  const backToTop = document.getElementById('backToTop');
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  if (!header || !nav || !navToggle) return;
+
+  /* Resalta el enlace activo del menú según la sección visible */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav__link');
+
+  function setActiveNavLink() {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 120;
+      if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  }
+
+  /* Header: sombra + estado al hacer scroll */
+  const onScroll = () => {
+    const scrolled = window.scrollY > 40;
+    header.classList.toggle('scrolled', scrolled);
+    if (backToTop) backToTop.classList.toggle('show', window.scrollY > 500);
+    setActiveNavLink();
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* Menú móvil */
+  const dropdownParent = document.querySelector('.has-dropdown');
+
+  function closeNav() {
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.classList.remove('active');
+    document.body.classList.remove('nav-open');
+    if (dropdownParent) dropdownParent.classList.remove('open');
+  }
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.classList.toggle('active', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+    if (!isOpen && dropdownParent) dropdownParent.classList.remove('open');
+  });
+
+  // Dropdown de productos en móvil (toca para abrir/cerrar)
+  let dropdownLink = null;
+  if (dropdownParent) {
+    dropdownLink = dropdownParent.querySelector('.nav__link');
+    dropdownLink.addEventListener('click', (e) => {
+      if (window.innerWidth <= 860) {
+        e.preventDefault();
+        dropdownParent.classList.toggle('open');
+      }
+    });
+  }
+
+  // Cierra el menú móvil al hacer click en un enlace
+  document.querySelectorAll('.nav__link, .dropdown a').forEach(link => {
+    if (link === dropdownLink) return; // el enlace "Productos" solo abre/cierra su submenú
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 860) closeNav();
+    });
+  });
+
+  // Cierra el menú móvil al tocar fuera de él
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 860 && nav.classList.contains('open') &&
+        !nav.contains(e.target) && !navToggle.contains(e.target)) {
+      closeNav();
+    }
+  });
+}
+
+/* ---------- Animación al hacer scroll (Intersection Observer) ---------- */
+function initReveal() {
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+}
+
+/* ---------- Contador animado de estadísticas ---------- */
+function initStats() {
+  const statNumbers = document.querySelectorAll('.stat__number');
+  if (!statNumbers.length) return;
+
+  function animateCount(el) {
+    const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = Math.floor(eased * target);
+      el.textContent = value.toLocaleString('es-PE');
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = target.toLocaleString('es-PE');
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  statNumbers.forEach(el => statsObserver.observe(el));
+}
+
+/* ---------- Filtro de proyectos ---------- */
+function initFiltroProyectos() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      projectCards.forEach(card => {
+        const match = filter === 'all' || card.getAttribute('data-category') === filter;
+        card.classList.toggle('hide', !match);
+      });
+    });
+  });
+}
+
+/* ---------- Álbum de fotos de proyectos ---------- */
+function initAlbum() {
+  const album = document.getElementById('album');
+  const imagenAlbum = document.getElementById('imagenAlbum');
+  const albumTitulo = document.getElementById('albumTitulo');
+  const albumMiniaturas = document.getElementById('albumMiniaturas');
+  if (!album || !imagenAlbum) return;
+
+  let fotosProyecto = [];
+  let fotoActual = 0;
+
+  function mostrarFoto() {
+    imagenAlbum.src = fotosProyecto[fotoActual];
+    albumMiniaturas.querySelectorAll('img').forEach((img, i) => {
+      img.classList.toggle('activa', i === fotoActual);
+    });
+  }
+
+  function cambiarFoto(direccion) {
+    fotoActual = (fotoActual + direccion + fotosProyecto.length) % fotosProyecto.length;
+    mostrarFoto();
+  }
+
+  function abrirAlbum(card) {
+    fotosProyecto = JSON.parse(card.getAttribute('data-fotos') || '[]');
+    if (!fotosProyecto.length) return;
+
+    fotoActual = 0;
+    albumTitulo.textContent = card.getAttribute('data-titulo') || '';
+
+    albumMiniaturas.innerHTML = '';
+    fotosProyecto.forEach((src, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.addEventListener('click', () => { fotoActual = i; mostrarFoto(); });
+      albumMiniaturas.appendChild(thumb);
+    });
+
+    mostrarFoto();
+    album.style.display = 'flex';
+  }
+
+  function cerrarAlbum() {
+    album.style.display = 'none';
+  }
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (card.hasAttribute('data-fotos')) {
+      card.addEventListener('click', () => abrirAlbum(card));
+    }
+  });
+
+  document.getElementById('albumCerrar').addEventListener('click', cerrarAlbum);
+  document.getElementById('albumAnterior').addEventListener('click', () => cambiarFoto(-1));
+  document.getElementById('albumSiguiente').addEventListener('click', () => cambiarFoto(1));
+
+  album.addEventListener('click', (e) => {
+    if (e.target === album) cerrarAlbum();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (album.style.display !== 'flex') return;
+    if (e.key === 'Escape') cerrarAlbum();
+    if (e.key === 'ArrowRight') cambiarFoto(1);
+    if (e.key === 'ArrowLeft') cambiarFoto(-1);
+  });
+}
+
+/* ---------- Slider de testimonios ---------- */
+function initTestimonios() {
+  const track = document.getElementById('testimonialTrack');
+  const dotsWrap = document.getElementById('testimonialDots');
+  const slides = track ? Array.from(track.children) : [];
+  if (!track || !slides.length) return;
+
+  let currentSlide = 0;
+  let sliderInterval;
+
+  function goToSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dotsWrap.querySelectorAll('span').forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function startAutoSlide() {
+    sliderInterval = setInterval(() => goToSlide(currentSlide + 1), 5500);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(sliderInterval);
+  }
+
+  startAutoSlide();
+  track.parentElement.addEventListener('mouseenter', stopAutoSlide);
+  track.parentElement.addEventListener('mouseleave', startAutoSlide);
+}
+
+/* ---------- Validación del formulario de contacto + envío por WhatsApp ---------- */
+function initFormularioContacto() {
+  const form = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+  if (!form) return;
+
+  const validators = {
+    name: (value) => value.trim().length >= 3 ? '' : 'Ingresa tu nombre completo (mín. 3 caracteres).',
+    phone: (value) => /^[\d\s+()-]{7,15}$/.test(value.trim()) ? '' : 'Ingresa un teléfono válido.',
+    email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()) ? '' : 'Ingresa un correo electrónico válido.',
+    message: (value) => value.trim().length >= 10 ? '' : 'Cuéntanos un poco más sobre tu proyecto (mín. 10 caracteres).'
+  };
+
+  function validateField(field) {
+    const validate = validators[field.name];
+    if (!validate) return true;
+    const errorMsg = validate(field.value);
+    const errorEl = document.getElementById(`${field.name}Error`);
+    const group = field.closest('.form-group');
+
+    if (errorMsg) {
+      group.classList.add('error');
+      if (errorEl) errorEl.textContent = errorMsg;
+      return false;
+    } else {
+      group.classList.remove('error');
+      if (errorEl) errorEl.textContent = '';
+      return true;
+    }
+  }
+
+  ['name', 'phone', 'email', 'message'].forEach(fieldName => {
+    const field = form.elements[fieldName];
+    if (field) {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        if (field.closest('.form-group').classList.contains('error')) validateField(field);
+      });
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let isValid = true;
+
+    ['name', 'phone', 'email', 'message'].forEach(fieldName => {
+      const field = form.elements[fieldName];
+      if (field && !validateField(field)) isValid = false;
+    });
+
+    if (isValid) {
+      const name = form.elements.name.value.trim();
+      const phone = form.elements.phone.value.trim();
+      const email = form.elements.email.value.trim();
+      const message = form.elements.message.value.trim();
+      const productField = form.elements.product;
+      const productLabel = productField && productField.value
+        ? productField.options[productField.selectedIndex].text
+        : '';
+
+      let texto = `Hola, soy ${name}. Mi teléfono es ${phone} y mi correo es ${email}.`;
+      if (productLabel) texto += ` Estoy interesado en: ${productLabel}.`;
+      texto += ` ${message}`;
+
+      window.open(whatsappLink(texto), '_blank', 'noopener');
+
+      formSuccess.classList.add('show');
+      form.reset();
+      setTimeout(() => formSuccess.classList.remove('show'), 6000);
+    } else {
+      formSuccess.classList.remove('show');
+      const firstError = form.querySelector('.form-group.error input, .form-group.error textarea');
+      if (firstError) firstError.focus();
+    }
+  });
+}
+
+/* ---------- Opciones de producto (color / tipo / presentación) ----------
+   Un producto puede tener varios grupos (.product-options). Cada grupo marca
+   su opción activa; el enlace de cotización incluye la elección de todos. */
+function initOpcionesProducto() {
+  const productItems = [...document.querySelectorAll('.product-item')]
+    .filter((item) => item.querySelector('.product-options'));
+
+  const updateQuoteLink = (item) => {
+    const elecciones = [...item.querySelectorAll('.product-options')].map((grupo) => {
+      const active = grupo.querySelector('.option-btn.is-active');
+      return `${grupo.dataset.optionLabel}: ${active.dataset.value}`;
+    });
+    const msg = `Hola, quiero cotizar: ${item.dataset.product} (${elecciones.join(', ')})`;
+    item.querySelector('.product-item__cta').href = whatsappLink(msg);
+  };
+
+  productItems.forEach((item) => {
+    updateQuoteLink(item);
+    item.querySelectorAll('.product-options').forEach((grupo) => {
+      grupo.querySelectorAll('.option-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          grupo.querySelectorAll('.option-btn').forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          grupo.querySelector('[data-selected]').textContent = btn.dataset.value;
+          if (btn.dataset.img) {
+            item.querySelector('.product-item__img').style.backgroundImage = `url(${btn.dataset.img})`;
+          }
+          if (btn.dataset.desc) {
+            item.querySelector('.product-item__desc').textContent = btn.dataset.desc;
+          }
+          updateQuoteLink(item);
+        });
+      });
+    });
+  });
+}
+
+/* ---------- Inicio ---------- */
+initEmail();
+initFooter();
+initNav();
+initReveal();
+initStats();
+initFiltroProyectos();
+initAlbum();
+initTestimonios();
+initFormularioContacto();
+initOpcionesProducto();
